@@ -16,8 +16,9 @@ export const houseFields: FieldConfig[] = [
   {
     name: 'livingWith',
     label: 'Living with',
-    type: 'text',
-    placeholder: 'Family / Friends / Spouse',
+    type: 'radio',
+    options: ['Spouse', 'Family', 'Friends', 'Others'],
+    required: true,
   },
   {
     name: 'occupation',

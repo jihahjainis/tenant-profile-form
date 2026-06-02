@@ -55,21 +55,65 @@ export default function TenantForm({
         <h1>{title}</h1>
 
         <form onSubmit={handleSubmit}>
-          {fields.map((field) => (
-            <label
-              className="field-row"
-              key={field.name}
-            >
-              <span>{field.label}</span>
+          {fields.map((field) => {
+            if (field.type === 'radio' && field.options) {
+              return (
+                <fieldset
+                  className="field-row option-field"
+                  key={field.name}
+                >
+                  <legend>
+                    {field.label}
+                    {field.required && <span className="required-marker">*</span>}
+                  </legend>
 
-              <input
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                placeholder={field.placeholder}
-              />
-            </label>
-          ))}
+                  <div className="radio-group">
+                    {field.options.map((option) => (
+                      <label
+                        className="radio-option"
+                        key={option}
+                      >
+                        <input
+                          type="radio"
+                          name={field.name}
+                          value={option}
+                          checked={formData[field.name] === option}
+                          onChange={handleChange}
+                          required={field.required}
+                        />
+                        <span
+                          className="radio-control"
+                          aria-hidden="true"
+                        />
+                        <span>{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              )
+            }
+
+            return (
+              <label
+                className="field-row"
+                key={field.name}
+              >
+                <span>
+                  {field.label}
+                  {field.required && <span className="required-marker">*</span>}
+                </span>
+
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                />
+              </label>
+            )
+          })}
 
           <button type="submit">
             Submit

@@ -54,11 +54,26 @@ form {
   color: #334155;
 }
 
-.field-row span {
+.field-row > span,
+.field-row legend {
   font-weight: 600;
 }
 
-.field-row input {
+.required-marker {
+  display: inline-grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.45rem;
+  place-items: center;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #1f2937;
+  font-size: 0.95rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.field-row > input {
   width: 100%;
   min-height: 3rem;
   border: 1px solid #cbd5e1;
@@ -69,11 +84,89 @@ form {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.field-row input:focus {
+.field-row > input:focus {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
   background: #ffffff;
+}
+
+.option-field {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0.75rem 0 0.35rem;
+  border: 0;
+  gap: 1rem;
+}
+
+.option-field legend {
+  margin-bottom: 0.35rem;
+  padding: 0;
+  color: #2f3437;
+  font-size: 15.2px;
+  line-height: 1.2;
+}
+
+.radio-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.radio-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: fit-content;
+  color: #2f3437;
+  font-size: 15.2px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.radio-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.radio-control {
+  display: grid;
+  width: 2rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+  place-items: center;
+  border: 2px solid #d1d5db;
+  border-radius: 0.45rem;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.radio-control::after {
+  content: '';
+  width: 0.72rem;
+  height: 0.42rem;
+  border-bottom: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  transform: translateY(-1px) rotate(-45deg) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.radio-option input:checked + .radio-control {
+  border-color: #2563eb;
+  background: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.radio-option input:checked + .radio-control::after {
+  transform: translateY(-1px) rotate(-45deg) scale(1);
+}
+
+.radio-option input:focus-visible + .radio-control {
+  outline: 3px solid rgba(37, 99, 235, 0.22);
+  outline-offset: 2px;
 }
 
 button {

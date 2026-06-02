@@ -52,7 +52,7 @@ export default function TenantForm({
   return (
     <div className="page-shell">
       <div className="form-card">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
 
         <form onSubmit={handleSubmit}>
           {fields.map((field) => {
@@ -64,7 +64,6 @@ export default function TenantForm({
                 >
                   <legend>
                     {field.label}
-                    {field.required && <span className="required-marker">*</span>}
                   </legend>
 
                   <div className="radio-group">
